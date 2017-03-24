@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php?/$1 [PT,L]
+RewriteCond %{REQUEST_METHOD} !^(GET|PUT|POST|DELETE)
+RewriteRule .* - [F]
+<Limit GET POST PUT DELETE>
+  Allow from all
+</Limit>
+<LimitExcept GET HEAD OPTIONS PUT>
+  Allow from all
+</LimitExcept>
